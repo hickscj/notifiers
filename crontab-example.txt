@@ -1,0 +1,3 @@
+*/20 6-20 * * * osascript Code/date-and-time.scpt
+*/20 6-20 * * * python Code/notifiers/prag-prog-tips/prag-prog-tips.py
+
