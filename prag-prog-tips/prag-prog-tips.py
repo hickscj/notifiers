@@ -11,7 +11,7 @@ def load_text_from_file(file_path):
     try:
         with open(file_path, "r") as f:
             for line in f:
-                line = line[0 : len(line) - 1]
+                line = line[0 : len(line) - 2]
                 strings.append(line.strip().replace('"', ""))
 
     except FileNotFoundError:
@@ -35,7 +35,7 @@ def notify():
     command = [
         "osascript",
         "-e",
-        f'tell app "System Events" to display dialog "{tips[idx]}\n{desc[idx]}" with title "Tip"',
+        f'display dialog "{tips[idx]}\n\n{desc[idx]}\n"',
     ]
     subprocess.run(command)
 
