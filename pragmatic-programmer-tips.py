@@ -1,23 +1,22 @@
 import random
 import subprocess
 
-tips = [
-    ('Care About Your Craft',
-     'Why spend your life developing software unless you care about doing it well?'),
-    ('Think! About Your Work',
-     'Turn off the autopilot and take control. Constantly critique and appraise your work.'),
-    ('You Have Agency', "It's your life. Grab hold of it and make it what you want."),
-    ("Provide Options, Don't Make Lame Excuses",
-     "Don't say it can't be done; explain what can be done."),
-    ("Don't Live With Broken Windows",
-     "Fix bad designs, wrong decisions, and poor code when you see them."),
-    ("Be a Catalyst for Change",
-     "You can't force change on people. Instead, show them how the future might be and help them participate in creating it."),
-    ("Sign Your Work", "Artisans of an earlier age were proud to sign their work. You should be, too."),
-    ("First, Do No Harm", "Failure is inevitable. Make sure no one will suffer because of it.")
-]
+def load_tips_from_file(file_path):
+    ''' Load tips from a text file '''
+    tips = []
+    try:
+        with open(file_path, 'r') as f:
+            for line in f:
+                if '|' in line:
+                    title, description = line.strip().split('|', 1)
+                    tips.append((title.strip(), description.strip()))
+    except FileNotFoundError:
+        print(f"Error: File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading tips: {e}")
+    return tips
 
-
+tips = load_tips_from_file('pragmatic_programmer_tips.txt')
 def notify():
     ''' notify via mac os notification '''
     idx = random.randrange(0, len(tips))
