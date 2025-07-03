@@ -212,7 +212,7 @@ const tipBodies = [
   "Enjoy this amazing life we have, and do great things."
 ];
 
-let tipNumber = Math.floor(Math.random() * (99 - 0 + 1)) + 0;
+let tipNumber = Math.floor(Math.random() * tipTitles.length);
 
 let dialogText = `${(app.currentDate())}
 \n--------------------------
