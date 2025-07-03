@@ -1,5 +1,6 @@
 import random
 import subprocess
+from datetime import datetime
 
 tips_file = "prag-prog-tips.txt"
 desc_file = "prag-prog-desc.txt"
@@ -25,17 +26,19 @@ def load_text_from_file(file_path):
 
 def notify():
     """notify via mac os notification"""
-    # tips = ["first tip"]
-    # titles = ["first title"]
     tips = load_text_from_file(tips_file)
     desc = load_text_from_file(desc_file)
 
     idx = random.randrange(0, len(tips))
 
+    current_date = datetime.now().strftime("%c")
+
+    dialogText = current_date + "\n\n" + tips[idx] + "\n\n" + desc[idx]
+
     command = [
         "osascript",
         "-e",
-        f'display dialog "{tips[idx]}\n\n{desc[idx]}\n"',
+        'display dialog "{}"'.format(dialogText),
     ]
     subprocess.run(command)
 
