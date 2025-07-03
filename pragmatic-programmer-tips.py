@@ -21,10 +21,12 @@ tips = [
 def notify():
     ''' notify via mac os notification '''
     idx = random.randrange(0, len(tips))
-    command = "osascript -e \"display notification \\\"" + \
-        tips[idx][1] + "\\\" with title \\\"" + \
-        tips[idx][0] + "\"\\\""
-    subprocess.run(command, shell=True, executable="/bin/bash")
+    command = [
+        "osascript",
+        "-e",
+        f'display notification "{tips[idx][1]}" with title "{tips[idx][0]}"'
+    ]
+    subprocess.run(command)
 
 
 notify()
